@@ -4,9 +4,9 @@
   "description": "A Facebook Voting App",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon index.js",
     "build": "next build",
-    "start": "set NODE_ENV=production && set HTTPS=true && node server.js"
+    "start": "NODE_ENV=production node index.js"
   },
   "author": "Jude Francis",
   "license": "ISC",
