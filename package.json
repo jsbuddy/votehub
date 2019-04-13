@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node index.js"
+    "start": "node ."
   },
   "author": "Jude Francis",
   "license": "ISC",
