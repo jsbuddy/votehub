@@ -4,9 +4,10 @@
   "description": "A Facebook Voting App",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "build": "next build",
-    "start": "node ."
+    "dev": "nodemon server.js -p $PORT",
+		"build": "next build",
+		"heroku-postbuild": "next build",
+		"start": "node server.js -p $PORT"
   },
   "author": "Jude Francis",
   "license": "ISC",

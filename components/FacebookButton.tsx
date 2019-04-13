@@ -4,7 +4,7 @@ import { TiSocialFacebook } from 'react-icons/ti';
 const FacebookButton = ({ onAuth }: { onAuth: any }) => {
     const responseFacebook = (response: any) => {
         console.log({ response });
-        if (response.status !== undefined) {
+        if (response.userID) {
             const { userID: facebookId, name, picture } = response;
             onAuth({ facebookId, name, picture: picture.data.url });
         }
