@@ -1,23 +1,24 @@
 import FacebookLogin from "react-facebook-login";
 import { TiSocialFacebook } from 'react-icons/ti';
-import { Fragment } from "react";
 
-export default ({ onAuth }) => {
-    const responseFacebook = response => {
-        const { userID: facebookId, name, email } = response;
-        onAuth({ facebookId, name, email });
-    }
+const FacebookButton = ({ onAuth }: { onAuth: any }) => {
+    const responseFacebook = (response: any) => {
+        console.log({ response });
+        if (response.status !== undefined) {
+            const { userID: facebookId, name, picture } = response;
+            onAuth({ facebookId, name, picture: picture.data.url });
+        }
+    };
 
     return (
-        <Fragment>
+        <>
             <FacebookLogin
                 appId="165816357676916"
-                autoLoad={true}
-                fields="name,email,picture"
+                fields="name,picture"
                 callback={responseFacebook}
                 cssClass="facebook-button"
                 icon={<TiSocialFacebook />}
-                textButton="Vote" />
+                textButton="Login" />
 
             <style global jsx>{`
                 .facebook-button {
@@ -25,8 +26,8 @@ export default ({ onAuth }) => {
                     align-items: center;
                     border: 1px solid #1c4fb5;
                     background: #245ac7;
-                    border-radius: 4px;
-                    padding: 10px;
+                    border-radius: 30px;
+                    padding: .4rem 1rem;
                     color: #fff;
                     font-size: 1rem;
                     cursor: pointer;
@@ -34,7 +35,7 @@ export default ({ onAuth }) => {
                 }
                 .facebook-button svg {
                     color: #fff;
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                     margin-right: 10px;
                 }
                 .facebook-button:not(:disabled):hover,
@@ -58,6 +59,8 @@ export default ({ onAuth }) => {
                     z-index: 1;
                 }
             `}</style>
-        </Fragment>
+        </>
     )
 }
+
+export default FacebookButton;

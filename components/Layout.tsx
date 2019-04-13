@@ -1,27 +1,38 @@
-import { Fragment, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import '../style.scss';
 import NavBar from "./NavBar";
+import { appReducer } from "./reducer";
+import { AppContext } from "./context";
 
-export default ({ children }) => {
-
-    useEffect(() => {
-        document.title = 'Vote Hub';
-    }, []);
+const Layout = ({ children }: { children: React.ReactNode }) => {
+    const [state, dispatch] = useReducer(appReducer, {
+        voting: null,
+        competitions: [],
+        loaded: false,
+        auth: {
+            authenticated: false,
+            user: null
+        }
+    }, (initialState: any) => {
+        return initialState;
+    });
 
     return (
-        <Fragment>
+        <AppContext.Provider value={{ dispatch, state }}>
             <div className="container">
                 <NavBar />
                 {children}
             </div>
             <style scoped jsx>{`
                 .container {
-                    max-width: 1000px;
+                    max-width: 900px;
                     width: 100%;
                     margin: 0 auto;
-                    padding: 0 20px;
+                    padding: 0 10px;
                 }
             `}</style>
-        </Fragment>
+        </AppContext.Provider>
     )
 }
+
+export default Layout;
