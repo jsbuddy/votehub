@@ -12,9 +12,9 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                         </span>
                     </span>
                     <span className="name">
-                        <div className="flex space-between align-center">
-                            {name}
+                        <div className="flex align-center">
                             <span className="image"><IconButton icon={<FiMoreHorizontal />} className="rounded small blue" onClick={showDetail}></IconButton></span>
+                            {name}
                             {/* <IconButton icon={FaEllipsisH} onClick={() => { }} className="rounded" /> */}
                         </div>
                         <span className="progress" style={{ width: `${percentage}%` }}></span>
@@ -84,6 +84,9 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
                     background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                     opacity: .1;
+                }
+                .image {
+                    margin-right: 10px;
                 }
             `}</style>
         </>
