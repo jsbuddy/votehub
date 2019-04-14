@@ -57,7 +57,7 @@ export default function Home() {
                     )
             }
             {
-                state.competitions.map(competition => {
+                state.competitions.sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1).map(competition => {
                     return (
                         <Competition
                             competition={competition}

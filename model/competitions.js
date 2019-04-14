@@ -7,9 +7,8 @@ const competitionSchema = new Schema({
     contestants: [
         {
             name: String,
-            department: String,
+            detail: String,
             imageUrl: String,
-            votesCount: { type: Number, default: 0 }
         }
     ],
     votes: [
@@ -20,6 +19,6 @@ const competitionSchema = new Schema({
             remoteAddress: String
         }
     ]
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('competition', competitionSchema);

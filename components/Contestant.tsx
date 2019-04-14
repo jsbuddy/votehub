@@ -1,4 +1,7 @@
-const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, voting = false, setSelected }) => {
+import { IconButton } from "./Button";
+import { FiImage } from "react-icons/fi";
+
+const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, voting = false, setSelected, showDetail }) => {
     return (
         <>
             <div className={`contestant ${voted && 'voted'}`}>
@@ -9,7 +12,11 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                         </span>
                     </span>
                     <span className="name">
-                        {name}
+                        <div className="flex space-between align-center">
+                            {name}
+                            <span className="image"><IconButton icon={<FiImage />} className="rounded small" onClick={showDetail}></IconButton></span>
+                            {/* <IconButton icon={FaEllipsisH} onClick={() => { }} className="rounded" /> */}
+                        </div>
                         <span className="progress" style={{ width: `${percentage}%` }}></span>
                     </span>
                     <span className="count">{count}</span>
@@ -47,7 +54,7 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                 }
                 .contestant .name {
                     border-radius: 30px 0 0 30px;
-                    padding: 10px 20px;
+                    padding: .9rem .7rem .9rem 1.5rem;
                     position: relative;
                     flex: 1;
                 }
@@ -78,7 +85,6 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                     opacity: .1;
                 }
-                
             `}</style>
         </>
     )

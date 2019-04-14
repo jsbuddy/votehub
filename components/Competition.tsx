@@ -3,6 +3,7 @@ import { IconButton, Button } from './Button';
 import { FaCheck, FaTimes } from 'react-icons/fa'
 import Wrapper from "./Wrapper";
 import { useState, useEffect } from "react";
+import ContestantDetail from "./ContestantDetail";
 
 interface CompetitionProps {
     competition: any;
@@ -17,6 +18,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
     const [selected, setSelected] = useState(null);
     const [userVote, setUserVote] = useState(null);
     const [votes, setVotes] = useState({});
+    const [contestantDetail, setContestantDetail] = useState(null);
 
     useEffect(() => {
         const votes = competition.votes.reduce((all, current) => {
@@ -57,11 +59,15 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                                 percentage={0}
                                 voting={votingId === competition._id}
                                 setSelected={() => setSelected(contestant._id)}
+                                showDetail={() => setContestantDetail(contestant)}
                             />
                         })
                     }
                 </div>
             </Wrapper>
+            {
+                contestantDetail && <ContestantDetail contestant={contestantDetail} close={() => setContestantDetail(null)}></ContestantDetail>
+            }
             <style scoped jsx>{`
                 .name {
                     color: steelblue;

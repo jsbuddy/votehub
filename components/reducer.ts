@@ -1,6 +1,3 @@
-// import Router from "next/router";
-// import competitions from "pages/competitions";
-
 export function appReducer(state, action) {
     switch (action.type) {
         case 'AUTHENTICATE':

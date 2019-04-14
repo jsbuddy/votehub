@@ -95,6 +95,10 @@ export const IconButton = ({ icon, className, ...props }: IconButtonProps) => {
                     cursor: pointer;
                     transition: all .2s ease;
                 }
+                .btn.small {
+                    width: 30px;
+                    height: 30px;
+                }
                 .btn.rounded {
                     border-radius: 50%;
                 }
