@@ -26,7 +26,7 @@ export default function Home() {
             vote: { ...state.auth.user, contestantId }, competitionId
         };
         const competition = await vote(data);
-        dispatch({ type: 'UPDATE_COMPETITION', payload: competition })
+        dispatch({ type: 'UPDATE_COMPETITION', payload: competition });
         setVoting(false);
         setVotingId(null);
     }
@@ -74,8 +74,9 @@ export default function Home() {
             }
             <style scoped jsx>{`
                 .alert {
-                    background: #214af312;
-                    color: slategrey;
+                    background: #214bf328;
+                    /* color: slategrey; */
+                    color: #ccc;
                     border-radius: 4px;
                     padding: 1.2rem;
                     margin-bottom: 20px;

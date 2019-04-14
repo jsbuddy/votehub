@@ -8,6 +8,18 @@ import { AppContext } from "../../components/context";
 import Router from "next/router";
 import Head from "next/head";
 import { add } from "../../components/Api";
+import Toast from '../../components/Toast';
+
+// interface Contestant {
+//     id: any;
+//     name: string;
+//     imageUrl: string;
+// }
+// interface Competition {
+//     name: string;
+//     deadline: Date;
+//     contestants: Array<Contestant>;
+// }
 
 export default function Add() {
     const { dispatch } = useContext(AppContext, undefined);
@@ -18,7 +30,7 @@ export default function Add() {
             { name: '', imageUrl: '', id: 1 },
             { name: '', imageUrl: '', id: 2 },
         ]
-    })
+    });
 
     const updateContestant = (id: any, field: string, value: string) => {
         let contestants = competition.contestants;
@@ -29,12 +41,23 @@ export default function Add() {
         setCompetition({ ...competition, contestants });
     };
 
+    const isValid = (competition: any) => {
+        let error = false;
+        if (!competition.name || !competition.deadline) error = true;
+        competition.contestants.forEach((contestant: any) => {
+            if (!contestant.name.trim() || !contestant.imageUrl.trim()) {
+                error = true;
+            }
+        })
+        return !error;
+    }
+
     const submit = async () => {
+        if (!isValid(competition)) return;
         setLoading(true);
         try {
             const newCompetition = await add(competition);
             if (newCompetition) {
-                console.log({ newCompetition });
                 dispatch({ type: 'ADD_COMPETITION', payload: newCompetition })
                 Router.push('/');
             }

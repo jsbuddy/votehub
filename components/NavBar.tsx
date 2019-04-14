@@ -28,7 +28,8 @@ const NavBar = () => {
                 .menu li a {
                     margin-left: 10px;
                     text-decoration: none;
-                    color: slategrey;
+                    color: #ccc;
+                    /* color: slategrey; */
                     padding: 1rem;
                     display: flex;
                     justify-content: center;
