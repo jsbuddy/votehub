@@ -14,7 +14,7 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     <span className="name">
                         <div className="flex space-between align-center">
                             {name}
-                            <span className="image"><IconButton icon={<FiMoreHorizontal />} className="rounded small" onClick={showDetail}></IconButton></span>
+                            <span className="image"><IconButton icon={<FiMoreHorizontal />} className="rounded small blue" onClick={showDetail}></IconButton></span>
                             {/* <IconButton icon={FaEllipsisH} onClick={() => { }} className="rounded" /> */}
                         </div>
                         <span className="progress" style={{ width: `${percentage}%` }}></span>
