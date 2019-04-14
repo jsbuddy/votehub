@@ -98,7 +98,7 @@ export default function Home() {
                     object-fit: cover;
                 }
                 .alert.green {
-                    background: rgba(61, 243, 33, 0.08);
+                    background: rgba(61, 243, 33, 0.24);
                 }
                 .alert span {
                     margin-right: 20px;

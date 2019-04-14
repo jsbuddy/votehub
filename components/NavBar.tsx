@@ -1,17 +1,24 @@
 import Link from 'next/link';
 import * as React from "react";
 import { FiHome, FiArchive } from 'react-icons/fi';
+import { useContext } from 'react';
+import { AppContext } from './context';
 
 const NavBar = () => {
+    const { state } = useContext(AppContext, undefined);
+    console.log({ state });
     return (
         <>
-            <div className="navbar">
-                <div className="logo" />
-                <ul className="menu">
-                    <li><Link href="/"><a title="Home"><FiHome /></a></Link></li>
-                    <li><Link href="/competitions"><a title="Manage Competitions"><FiArchive /></a></Link></li>
-                </ul>
-            </div>
+            {
+                state.auth.isAdmin ?
+                <div className="navbar">
+                    <div className="logo" />
+                    <ul className="menu">
+                        <li><Link href="/"><a title="Home"><FiHome /></a></Link></li>
+                        <li><Link href="/competitions"><a title="Manage Competitions"><FiArchive /></a></Link></li>
+                    </ul>
+                </div> : <div className="no-menu"/>
+            }
             <style scoped jsx>{`
                 .navbar {
                     display: flex;
@@ -40,6 +47,9 @@ const NavBar = () => {
                     padding: .6rem 1rem;
                     background: rgba(63, 81, 181, 0.1);
                     border-radius: 4px;
+                }
+                .no-menu {
+                    margin-bottom: 20px;
                 }
             `}</style>
         </>

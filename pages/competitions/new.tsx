@@ -134,7 +134,7 @@ export default function Add() {
                     margin-bottom: 5px;
                 }
                 .add {
-                    border: 3px dashed rgba(0, 0, 0, .1);
+                    border: 3px dashed rgba(255, 255, 255, .1);
                     border-radius: 5px;
                     display: flex;
                     justify-content: center;

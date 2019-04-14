@@ -4,7 +4,9 @@
 export function appReducer(state, action) {
     switch (action.type) {
         case 'AUTHENTICATE':
-            return { ...state, auth: { authenticated: true, user: action.payload } };
+            let isAdmin = false;
+            if (action.payload.facebookId, process.env.adminFacebookId) isAdmin = true;
+            return { ...state, auth: { authenticated: true, user: action.payload, isAdmin } };
         case 'DEAUTHENTICATE':
             return { ...state, auth: { authenticated: false, user: null } };
         case 'ADD_COMPETITION':
