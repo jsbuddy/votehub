@@ -11,7 +11,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         loaded: false,
         auth: {
             authenticated: false,
-            user: null
+            user: null,
+            isAdmin: false,
         }
     }, (initialState: any) => {
         return initialState;

@@ -6,18 +6,17 @@ import { AppContext } from './context';
 
 const NavBar = () => {
     const { state } = useContext(AppContext, undefined);
-    console.log({ state });
     return (
         <>
             {
                 state.auth.isAdmin ?
-                <div className="navbar">
-                    <div className="logo" />
-                    <ul className="menu">
-                        <li><Link href="/"><a title="Home"><FiHome /></a></Link></li>
-                        <li><Link href="/competitions"><a title="Manage Competitions"><FiArchive /></a></Link></li>
-                    </ul>
-                </div> : <div className="no-menu"/>
+                    <div className="navbar">
+                        <div className="logo" />
+                        <ul className="menu">
+                            <li><Link href="/"><a title="Home"><FiHome /></a></Link></li>
+                            <li><Link href="/competitions"><a title="Manage Competitions"><FiArchive /></a></Link></li>
+                        </ul>
+                    </div> : <div className="no-menu" />
             }
             <style scoped jsx>{`
                 .navbar {

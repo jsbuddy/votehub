@@ -7,9 +7,14 @@ export default function ContestantDetail({ contestant, close }) {
         };
     }, [])
 
+    const startClose = () => {
+        // Animate out of view then close
+        close();
+    };
+
     return (
         <>
-            <div className="backdrop" onClick={close}/>
+            <div className="backdrop" onClick={startClose} />
             <div className="detail">
                 <div className="image">
                     <img src={contestant.imageUrl} alt={`${contestant.name}'s Profile Picture`} />

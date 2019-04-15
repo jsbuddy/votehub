@@ -22,15 +22,18 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
 
     useEffect(() => {
         const votes = competition.votes.reduce((all, current) => {
-            if (currentUser && (current.facebookId === currentUser.facebookId)) {
-                console.log('Found!');
-                setUserVote(current);
-            }
+            if (currentUser && (current.facebookId === currentUser.facebookId)) setUserVote(current);
             all[current.contestantId] = all[current.contestantId] ? [all[current.contestantId] + 1] : 1;
             return all;
         }, {});
         setVotes(votes);
     }, [currentUser, competition])
+
+    const computePercentage = id => {
+        const total = Object.keys(votes).reduce((total, vote) => total + votes[vote], 0);
+        const current = votes[id] || 0;
+        return Math.round((current / total) * 100);
+    }
 
     return (
         <>
@@ -56,7 +59,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                                 key={contestant._id}
                                 name={contestant.name}
                                 count={votes[contestant._id] ? votes[contestant._id] : 0}
-                                percentage={0}
+                                percentage={computePercentage(contestant._id)}
                                 voting={votingId === competition._id}
                                 setSelected={() => setSelected(contestant._id)}
                                 showDetail={() => setContestantDetail(contestant)}

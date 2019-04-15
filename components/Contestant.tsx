@@ -15,7 +15,6 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                         <div className="flex align-center">
                             <span className="image"><IconButton icon={<FiMoreHorizontal />} className="rounded small blue" onClick={showDetail}></IconButton></span>
                             {name}
-                            {/* <IconButton icon={FaEllipsisH} onClick={() => { }} className="rounded" /> */}
                         </div>
                         <span className="progress" style={{ width: `${percentage}%` }}></span>
                     </span>

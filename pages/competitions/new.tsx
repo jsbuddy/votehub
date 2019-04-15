@@ -8,20 +8,8 @@ import { AppContext } from "../../components/context";
 import Router from "next/router";
 import Head from "next/head";
 import { add } from "../../components/Api";
-import Toast from '../../components/Toast';
 
-// interface Contestant {
-//     id: any;
-//     name: string;
-//     imageUrl: string;
-// }
-// interface Competition {
-//     name: string;
-//     deadline: Date;
-//     contestants: Array<Contestant>;
-// }
-
-export default function Add() {
+const New = () => {
     const { dispatch } = useContext(AppContext, undefined);
     const [loading, setLoading] = useState(false);
 
@@ -153,3 +141,5 @@ export default function Add() {
         </>
     );
 }
+
+export default New;
