@@ -57,6 +57,10 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     position: relative;
                     flex: 1;
                 }
+                .contestant .name *:not(.progress) {
+                    z-index: 2;
+                    position: relative;
+                }
                 .contestant .count {
                     border-radius: 3px 30px 30px 3px;
                     padding: 10px 20px;
@@ -83,6 +87,7 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
                     background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                     opacity: .1;
+                    z-index: 1;
                 }
                 .image {
                     margin-right: 10px;

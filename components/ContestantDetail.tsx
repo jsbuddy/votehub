@@ -29,7 +29,7 @@ export default function ContestantDetail({ contestant, close }) {
                     width: 100%;
                     height: 100vh;
                     background: rgba(0, 0, 0, .8);
-                    z-index: 1;
+                    z-index: 10;
                 }
                 .detail {
                     position: fixed;
@@ -42,7 +42,7 @@ export default function ContestantDetail({ contestant, close }) {
                     background: #fff;
                     border-radius: 7px;
                     min-height: 200px;
-                    z-index: 2;
+                    z-index: 100;
                     overflow: hidden;
                     box-shadow: 0 20px 30px -15px rgba(0, 0, 0, .06);
                 }
