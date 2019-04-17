@@ -27,6 +27,7 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     align-items: center;
                     margin: 1rem 0;
                     width: 100%;
+                    overflow: hidden;
                 }
                 .contestant .details {
                     display: flex;

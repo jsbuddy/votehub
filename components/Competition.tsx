@@ -23,14 +23,14 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
     useEffect(() => {
         const votes = competition.votes.reduce((all, current) => {
             if (currentUser && (current.facebookId === currentUser.facebookId)) setUserVote(current);
-            all[current.contestantId] = all[current.contestantId] ? [all[current.contestantId] + 1] : 1;
+            all[current.contestantId] = all[current.contestantId] ? all[current.contestantId] + 1 : 1;
             return all;
         }, {});
         setVotes(votes);
     }, [currentUser, competition])
 
     const computePercentage = id => {
-        const total = Object.keys(votes).reduce((total, vote) => total + votes[vote], 0);
+        const total = Object.keys(votes).reduce((total, vote) => total + parseInt(votes[vote], 10), 0);
         const current = votes[id] || 0;
         return Math.round((current / total) * 100);
     }
