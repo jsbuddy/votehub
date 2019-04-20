@@ -18,7 +18,9 @@ const FacebookButton = ({ onAuth }: { onAuth: any }) => {
                 callback={responseFacebook}
                 cssClass="facebook-button"
                 icon={<TiSocialFacebook />}
-                textButton="Login" />
+                textButton="Login"
+                redirectUri="https://voteshub.herokuapp.com"
+            />
 
             <style global jsx>{`
                 .facebook-button {
