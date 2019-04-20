@@ -82,7 +82,6 @@ const Contestant = ({ name = '', count = 0, percentage = 0, voted = false, votin
                     left: 0;
                     height: 100%;
                     display: block;
-                    width: 20%;
                     border-radius: inherit;
                     background: #4776E6;  /* fallback for old browsers */
                     background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */

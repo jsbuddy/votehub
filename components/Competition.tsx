@@ -4,6 +4,7 @@ import { FaCheck, FaTimes } from 'react-icons/fa'
 import Wrapper from "./Wrapper";
 import { useState, useEffect } from "react";
 import ContestantDetail from "./ContestantDetail";
+import { FiRefreshCw } from "react-icons/fi";
 
 interface CompetitionProps {
     competition: any;
@@ -11,10 +12,13 @@ interface CompetitionProps {
     canVote: boolean;
     setVotingId: any;
     vote: any;
-    currentUser: any
+    currentUser: any,
+    voting: boolean,
+    refreshing: Array<string>,
+    onRefresh: any
 }
 
-const Competition = ({ competition, votingId, canVote, setVotingId, vote, currentUser, voting }: CompetitionProps) => {
+const Competition = ({ competition, votingId, canVote, setVotingId, vote, currentUser, voting, refreshing, onRefresh }: CompetitionProps) => {
     const [selected, setSelected] = useState(null);
     const [userVote, setUserVote] = useState(null);
     const [votes, setVotes] = useState({});
@@ -50,6 +54,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                                 <span><IconButton icon={<FaCheck />} disabled={!selected || voting} className="green rounded" onClick={() => vote(competition._id, selected)}></IconButton></span>
                             </>
                         }
+                        <span><IconButton disabled={refreshing.includes(competition._id)} icon={<FiRefreshCw />} className="rounded" onClick={onRefresh}></IconButton></span>
                     </div>
                 </div>
                 <div className="contestants">

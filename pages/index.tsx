@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Competition from "../components/Competition";
 import Head from 'next/head';
-import { fetchCompetitions, vote } from '../components/Api';
+import { fetchCompetitions, vote, refreshCompetition } from '../components/Api';
 import FacebookButton from "../components/FacebookButton";
 import { AppContext } from "../components/context";
 import { Button } from "../components/Button";
@@ -11,6 +11,7 @@ export default function Home() {
     const { state, dispatch } = useContext(AppContext, undefined);
     const [votingId, setVotingId] = useState(null);
     const [voting, setVoting] = useState(false);
+    const [refreshing, setRefreshing] = useState([]);
 
     useEffect(() => {
         if (!state.loaded) {
@@ -31,6 +32,13 @@ export default function Home() {
         setVotingId(null);
     }
 
+    const refresh = async (competitionId: string) => {
+        setRefreshing([...refreshing, competitionId]);
+        const competition = await refreshCompetition(competitionId);
+        dispatch({ type: 'UPDATE_COMPETITION', payload: competition });
+        setRefreshing([...refreshing].filter(c => c !== competitionId));
+    }
+
     return (
         <>
             <Head>
@@ -40,7 +48,7 @@ export default function Home() {
                 !state.auth.authenticated ? (
                     <div className="flex align-center justify-center">
                         <div className="alert flex space-between align-center">
-                            <span>Login with your facebook account to vote</span>
+                            <span>Login to vote</span>
                             <FacebookButton onAuth={(user: any) => dispatch({ type: 'AUTHENTICATE', payload: user })} />
                         </div>
                     </div>
@@ -48,7 +56,7 @@ export default function Home() {
                         <div className="flex align-center justify-center">
                             <div className="alert flex space-between align-center green">
                                 <div className="flex align-center">
-                                    <div className="image"><img src={state.auth.user.picture} alt="" /></div>
+                                    <div className="image"><img src={state.auth.user.picture} alt={`${state.auth.user.name}s picture`} /></div>
                                     <span>You are logged in as {state.auth.user.name}</span>
                                 </div>
                                 <Button text="Logout" icon={<FiPower />} className="red rounded" onClick={() => dispatch({ type: 'DEAUTHENTICATE' })} />
@@ -68,6 +76,8 @@ export default function Home() {
                             vote={startVote}
                             currentUser={state.auth.user}
                             voting={voting}
+                            refreshing={refreshing}
+                            onRefresh={() => refresh(competition._id)}
                         />
                     )
                 })

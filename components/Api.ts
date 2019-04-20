@@ -28,3 +28,12 @@ export async function vote({ vote, competitionId }: { vote: any, competitionId: 
         console.dir({ error })
     }
 }
+
+export async function refreshCompetition(competitionId: string) {
+    try {
+        const response = await axios({ method: 'GET', url: `/api/competitions/${competitionId}` });
+        return response.data.competition;
+    } catch (error) {
+        console.dir({ error });
+    }
+}

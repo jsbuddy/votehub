@@ -1,5 +1,15 @@
 const Competition = require('../../model/competitions');
 
+module.exports.getCompetition = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const competition = await Competition.findById(id);
+        res.status(200).json({ success: true, competition });
+    } catch (error) {
+        res.status(500).json({ success: false, error });
+    }
+}
+
 module.exports.getCompetitions = async (req, res) => {
     try {
         const competitions = await Competition.find({});
