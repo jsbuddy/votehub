@@ -8,6 +8,7 @@ import { AppContext } from "../../components/context";
 import Router from "next/router";
 import Head from "next/head";
 import { add } from "../../components/Api";
+import { withAuth } from "../../components/withAuth";
 
 const New = () => {
     const { dispatch } = useContext(AppContext, undefined);
@@ -142,4 +143,4 @@ const New = () => {
     );
 }
 
-export default New;
+export default withAuth(New);

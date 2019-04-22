@@ -3,6 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import { IconButton } from '../../components/Button';
 import Link from 'next/link';
 import Wrapper from '../../components/Wrapper';
+import { withAuth } from '../../components/withAuth';
 
 const Admin = () => {
     return (
@@ -36,4 +37,4 @@ const Admin = () => {
     )
 };
 
-export default Admin;
+export default withAuth(Admin);

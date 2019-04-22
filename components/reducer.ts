@@ -3,6 +3,7 @@ export function appReducer(state, action) {
         case 'AUTHENTICATE':
             let isAdmin = false;
             if (action.payload.facebookId === process.env.adminFacebookId) isAdmin = true;
+            localStorage.setItem('user', JSON.stringify(action.payload));
             return { ...state, auth: { authenticated: true, user: action.payload, isAdmin } };
         case 'DEAUTHENTICATE':
             return { ...state, auth: { authenticated: false, user: null } };
