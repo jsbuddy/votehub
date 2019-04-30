@@ -18,6 +18,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         return initialState;
     });
 
+    useEffect(() => {
+        let user: any = localStorage.getItem('user');
+        if (user) {
+            user = JSON.parse(user);
+            if (user.facebookId) {
+                
+            }
+        }
+        console.log({ user });
+    }, []);
+
     return (
         <AppContext.Provider value={{ dispatch, state }}>
             <div className="container">

@@ -68,9 +68,9 @@ export default function Home() {
                 state.competitions.sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1).map(competition => {
                     return (
                         <Competition
+                            key={competition._id}
                             competition={competition}
                             votingId={votingId}
-                            key={competition._id}
                             canVote={state.auth.authenticated}
                             setVotingId={setVotingId}
                             vote={startVote}
@@ -85,7 +85,6 @@ export default function Home() {
             <style scoped jsx>{`
                 .alert {
                     background: #214bf328;
-                    /* color: slategrey; */
                     color: #ccc;
                     border-radius: 4px;
                     padding: 1.2rem;

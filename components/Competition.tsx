@@ -68,6 +68,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                                 voting={votingId === competition._id}
                                 setSelected={() => setSelected(contestant._id)}
                                 showDetail={() => setContestantDetail(contestant)}
+                                active={userVote && (userVote.contestantId === contestant._id)}
                             />
                         })
                     }
