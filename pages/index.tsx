@@ -5,6 +5,7 @@ import { fetchCompetitions, vote, refreshCompetition } from '../components/Api';
 import FacebookButton from "../components/FacebookButton";
 import { AppContext } from "../components/context";
 import { Button } from "../components/Button";
+import Loader from "../components/Loader";
 import { FiPower } from "react-icons/fi";
 
 export default function Home() {
@@ -65,22 +66,23 @@ export default function Home() {
                     )
             }
             {
-                state.competitions.sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1).map(competition => {
-                    return (
-                        <Competition
-                            key={competition._id}
-                            competition={competition}
-                            votingId={votingId}
-                            canVote={state.auth.authenticated}
-                            setVotingId={setVotingId}
-                            vote={startVote}
-                            currentUser={state.auth.user}
-                            voting={voting}
-                            refreshing={refreshing}
-                            onRefresh={() => refresh(competition._id)}
-                        />
-                    )
-                })
+                !state.loaded ? <Loader />
+                    : state.competitions.sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1).map(competition => {
+                        return (
+                            <Competition
+                                key={competition._id}
+                                competition={competition}
+                                votingId={votingId}
+                                canVote={state.auth.authenticated}
+                                setVotingId={setVotingId}
+                                vote={startVote}
+                                currentUser={state.auth.user}
+                                voting={voting}
+                                refreshing={refreshing}
+                                onRefresh={() => refresh(competition._id)}
+                            />
+                        )
+                    })
             }
             <style scoped jsx>{`
                 .alert {
