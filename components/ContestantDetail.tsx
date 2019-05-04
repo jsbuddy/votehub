@@ -55,6 +55,7 @@ export default function ContestantDetail({ contestant, close }) {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    object-position: top;
                 }
                 .name {
                     font-size: 1.1rem;
