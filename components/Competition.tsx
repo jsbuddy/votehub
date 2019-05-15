@@ -46,7 +46,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                     {competition.name}
                     <div className="buttons">
                         {
-                            canVote && votingId !== competition._id && !userVote && <Button className="blue" text="Vote" onClick={() => setVotingId(competition._id)}></Button>
+                            canVote && votingId !== competition._id && !userVote && (new Date(Date.now()) > new Date(competition.deadline)) && <Button className="blue" text="Vote" onClick={() => setVotingId(competition._id)}></Button>
                         }
                         {
                             (canVote && votingId === competition._id) && <>
