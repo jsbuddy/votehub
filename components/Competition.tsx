@@ -46,7 +46,7 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                     {competition.name}
                     <div className="buttons">
                         {
-                            canVote && votingId !== competition._id && !userVote && (new Date(Date.now()) > new Date(competition.deadline)) && <Button className="blue" text="Vote" onClick={() => setVotingId(competition._id)}></Button>
+                            canVote && votingId !== competition._id && !userVote && (new Date(Date.now()) < new Date(competition.deadline)) && <Button className="blue" text="Vote" onClick={() => setVotingId(competition._id)}></Button>
                         }
                         {
                             (canVote && votingId === competition._id) && <>
@@ -54,7 +54,9 @@ const Competition = ({ competition, votingId, canVote, setVotingId, vote, curren
                                 <span><IconButton icon={<FaCheck />} disabled={!selected || voting} className="green rounded" onClick={() => vote(competition._id, selected)}></IconButton></span>
                             </>
                         }
-                        <span><IconButton disabled={refreshing.includes(competition._id)} icon={<FiRefreshCw />} className="rounded" onClick={onRefresh}></IconButton></span>
+                        {
+                            (new Date(Date.now()) < new Date(competition.deadline)) && <span><IconButton disabled={refreshing.includes(competition._id)} icon={<FiRefreshCw />} className="rounded" onClick={onRefresh}></IconButton></span>
+                        }
                     </div>
                 </div>
                 <div className="contestants">
